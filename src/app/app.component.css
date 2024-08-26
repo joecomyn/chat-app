@@ -1,18 +1,32 @@
-.main{
+.main {
     max-width: 100%;
-    height: 100px;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
-.title-bar{
-    height: 100%;
+.title-bar {
+    min-height: 10vh;
     padding-top: 0px;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(177,131,205,1) 0%, rgba(119,158,222,1) 58%, rgba(0,212,255,1) 100%);
-    margin-top: 0px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
 }
 
-.app-header{
+.app-header {
     text-align: center;
+    color: white;
+}
+
+.app-container {
+    min-height: 80vh;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
 }

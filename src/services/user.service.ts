@@ -15,6 +15,13 @@ export class UserService {
   }
 
   isLoggedIn(): boolean {
-    return this.username !== '';
+    
+    if( typeof this.username === "string" && this.username.length > 0){
+      return true
+    }
+    else{
+      return false;
+    }
+
   }
 }

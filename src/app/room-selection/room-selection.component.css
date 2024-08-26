@@ -1,0 +1,40 @@
+.room-selector-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid #000;
+    background-color: #779ede;
+}
+
+.welcome-box {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+li {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #968fd5;
+    border-radius: 10px;
+}
+
+li:hover {
+    background-color: #f0f0f0;
+}

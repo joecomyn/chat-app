@@ -9,7 +9,7 @@ import { chatMessage } from '../models/chat-message';
 })
 export class ChatService {
 
-  private apiUrl = 'https://localhost:7133/chatapi'; 
+  private apiUrl = 'http://localhost:5055/chatapi'; 
 
   constructor(private http: HttpClient) { }
 
@@ -18,11 +18,11 @@ export class ChatService {
   }
 
   getChatRoomById(roomId: number): Observable<chatRoom> {
-    return this.http.get<chatRoom>(`${this.apiUrl}/chatrooms/${roomId}`);
+    return this.http.get<chatRoom>(`${this.apiUrl}/ChatRooms/${roomId}`);
   }
 
   sendMessage(roomId: number, message: chatMessage): Observable<chatMessage> {
-    return this.http.post<chatMessage>(`${this.apiUrl}/chatrooms/${roomId}/ChatMessages`, message);
+    return this.http.post<chatMessage>(`${this.apiUrl}/ChatRooms/${roomId}/ChatMessages`, message);
   }
 
 }
