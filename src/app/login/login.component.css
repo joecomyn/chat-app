@@ -22,12 +22,13 @@
   .login-button {
     width: 60%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #968fd5;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    border: 1px solid #000;
   }
 
 .login-text {
