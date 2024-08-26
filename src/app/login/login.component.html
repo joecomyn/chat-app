@@ -1,0 +1,9 @@
+<div class="login-container">
+    <form (ngSubmit)="onSubmit()">
+      <div class="login-box">
+        <label for="username">Enter your display name:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" class="login-text" required>
+        <button type="submit" class="login-button">Go</button>
+      </div>
+    </form>
+  </div>
