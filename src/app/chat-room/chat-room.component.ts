@@ -7,6 +7,8 @@ import { UserService } from '../../services/user.service';
 import { RoomService } from '../../services/room.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import * as signalR from '@microsoft/signalr';
+
 @Component({
   selector: 'app-chat-room',
   standalone: true,
@@ -15,7 +17,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './chat-room.component.css'
 })
 export class ChatRoomComponent {
-
+  private hubConnection!: signalR.HubConnection
   roomName: string = '';
   messages: chatMessage[] = [];
   newMessage: string = '';
@@ -34,7 +36,21 @@ export class ChatRoomComponent {
     this.user = this.userService.getUsername();
     this.roomId = this.roomService.getRoomId();
     this.messages = this.roomService.getChatMessages();
-    this.roomName = this.roomService.getRoomName();  
+    this.roomName = this.roomService.getRoomName(); 
+    this.hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl('http://localhost:5055/ChatHub', {withCredentials: true})
+    .build();
+
+    this.hubConnection.start()
+    .then(() => console.log('Connection started'))
+    .catch(err => console.error('Error while starting connection: ' + err));
+
+    this.hubConnection.on('ReceiveMessage', (receivedMessage) => {
+      if(receivedMessage.user !== this.user){
+        const newMessage: chatMessage = { ...receivedMessage};
+        this.roomService.addChatMessage(newMessage);
+      }
+    });
   }
 
   sendMessage(): void {
@@ -43,7 +59,6 @@ export class ChatRoomComponent {
         user: this.user,
         messageBody: this.newMessage
       };
-
       this.chatService.sendMessage(this.roomId, message).subscribe({
         next: (response) => {
           this.roomService.addChatMessage(response);
