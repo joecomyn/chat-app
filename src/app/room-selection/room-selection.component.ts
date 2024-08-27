@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { chatRoom } from '../../models/chat-room';
 import { UserService } from '../../services/user.service';
 import { ChatService } from '../../services/chat-app.service';
+import { RoomService } from '../../services/room.service';
 
 @Component({
   selector: 'app-room-selection',
@@ -19,7 +20,12 @@ export class RoomSelectionComponent {
   rooms: chatRoom[] = [];
   errorMessage: string = '';
 
-  constructor(private userService: UserService, private chatService: ChatService, private router: Router) {};
+  constructor(
+    private userService: UserService, 
+    private chatService: ChatService,
+    private roomService: RoomService,
+    private router: Router
+  ) {};
 
   ngOnInit(): void {
     this.user = this.userService.getUsername();
@@ -31,6 +37,9 @@ export class RoomSelectionComponent {
   };
 
   selectRoom(roomId: number): void {
+    let selected: chatRoom | undefined = this.rooms.find((room) => room.roomId === roomId);
+    if(selected !== undefined)
+    this.roomService.setRoom(selected?.roomName, selected?.roomId, selected?.chatMessages);
     this.router.navigate(['/rooms', roomId]);
   }
 
