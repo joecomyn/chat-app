@@ -36,5 +36,6 @@ li {
 }
 
 li:hover {
-    background-color: #f0f0f0;
+    background-color: #48b3eb;
+    border: 1px solid #ffffff;
 }
