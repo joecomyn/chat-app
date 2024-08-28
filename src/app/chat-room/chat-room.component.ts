@@ -73,6 +73,7 @@ export class ChatRoomComponent {
 
   leaveRoom(): void {
     this.roomService.unsetRoom();
+    this.hubConnection.off('ReceiveMessage');
     this.router.navigate(['/rooms']);
   }
 
