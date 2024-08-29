@@ -71,8 +71,20 @@ export class ChatRoomComponent {
     }
   }
 
+  deleteMessage(chatMessageId: number): void {
+    this.chatService.deleteMessage(this.roomId, chatMessageId).subscribe({
+      next: (response) => {
+        this.roomService.deleteChatMessage(response);
+      },
+      error: (error) => {
+        this.errorMessage = "Message failed to send :("
+      }
+    });
+  }
+
   leaveRoom(): void {
     this.roomService.unsetRoom();
+    this.hubConnection.off('ReceiveMessage');
     this.router.navigate(['/rooms']);
   }
 

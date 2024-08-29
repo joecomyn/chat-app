@@ -9,6 +9,9 @@
         <div class="message-user">{{ message.user }}</div>
         <div class="message-body">{{ message.messageBody }}</div>
         <div class="message-timestamp">{{ message.timestamp | date:'shortTime' }}</div>
+        <button *ngIf="message.user === user" (click)="deleteMessage(message.chatId)" class="delete-chat-button">
+            <img src="/icons/bin.png" alt="Bin Icon">
+        </button>
         </div>
     </div>
 
