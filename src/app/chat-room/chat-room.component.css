@@ -123,3 +123,15 @@
   background-color: #ffffff;
   border: 2px solid #48b3eb;
 }
+
+.delete-chat-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-chat-button img {
+  width: 15px;
+  height: 15px;
+}

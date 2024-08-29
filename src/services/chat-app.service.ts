@@ -26,4 +26,7 @@ export class ChatService {
     return this.http.post<chatMessage>(`${this.apiUrl}/ChatRooms/${roomId}/ChatMessages`, message);
   }
 
+  deleteMessage(roomId: number, chatMessageId: number): Observable<chatMessage> {
+    return this.http.delete<chatMessage>(`${this.apiUrl}/ChatRooms/${roomId}/ChatMessages/${chatMessageId}`);
+  }
 }

@@ -33,6 +33,11 @@ export class RoomService {
         this.roomChatMessages.push(message);
     }
 
+    deleteChatMessage(deletedMessage: chatMessage): void {
+        const index: number = this.roomChatMessages.findIndex((message) => message.chatId == deletedMessage.chatId);
+        this,this.roomChatMessages.splice(index, 1);
+    }
+
     unsetRoom(): void {
         this.roomName = "";
         this.roomId = NaN;
