@@ -35,7 +35,14 @@ export class RoomService {
 
     deleteChatMessage(deletedMessage: chatMessage): void {
         const index: number = this.roomChatMessages.findIndex((message) => message.chatId == deletedMessage.chatId);
-        this,this.roomChatMessages.splice(index, 1);
+        if(index >= 0){
+            this.roomChatMessages.splice(index, 1);
+        }
+    }
+
+    updateChatMessage(updatedMessage: chatMessage): void {
+        const index: number = this.roomChatMessages.findIndex((message) => message.chatId == updatedMessage.chatId);
+        this.roomChatMessages[index].messageBody = updatedMessage.messageBody;
     }
 
     unsetRoom(): void {

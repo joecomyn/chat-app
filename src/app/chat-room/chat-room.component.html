@@ -12,11 +12,16 @@
         <button *ngIf="message.user === user" (click)="deleteMessage(message.chatId)" class="delete-chat-button">
             <img src="/icons/bin.png" alt="Bin Icon">
         </button>
+        <button *ngIf="message.user === user" (click)="selectUpdateMessage(message.chatId, message.messageBody)" class="delete-chat-button">
+            <img src="/icons/edit.png" alt="Bin Icon">
+        </button>
         </div>
     </div>
 
     <div class="new-message-form">
-        <input [(ngModel)]="newMessage" placeholder="Type your message here..." class="message-input"/>
-        <button (click)="sendMessage()" class="send-button">Send</button>
+        <input *ngIf="this.editingMessageId !== null" [(ngModel)]="editingMessageBody" placeholder="Type your message here..." class="message-input"/>
+        <button *ngIf="this.editingMessageId !== null" (click)="updateMessage(this.editingMessageId)" class="send-button">Update</button>
+        <input *ngIf="this.editingMessageId === null" [(ngModel)]="newMessage" placeholder="Type your message here..." class="message-input"/>
+        <button *ngIf="this.editingMessageId === null" (click)="sendMessage()" class="send-button">Send</button>
     </div>
 </div>

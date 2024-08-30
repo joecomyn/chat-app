@@ -48,6 +48,9 @@
 }
 
 .chat-messages {
+  overflow-y: auto;
+  max-height: calc(100vh - 150px);
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

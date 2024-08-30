@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { chatRoom } from '../models/chat-room';
 import { chatMessage } from '../models/chat-message';
 import { newChatMessage } from '../models/new-chat-message';
+import { updateChatMessage } from '../models/update-message';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class ChatService {
 
   deleteMessage(roomId: number, chatMessageId: number): Observable<chatMessage> {
     return this.http.delete<chatMessage>(`${this.apiUrl}/ChatRooms/${roomId}/ChatMessages/${chatMessageId}`);
+  }
+
+  updateChatMessage(roomId: number, chatMessageId: number, updateChatMessage: updateChatMessage): Observable<chatMessage> {
+    return this.http.patch<chatMessage>(`${this.apiUrl}/ChatRooms/${roomId}/ChatMessages/${chatMessageId}`, updateChatMessage);
   }
 }
